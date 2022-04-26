@@ -34,10 +34,10 @@ const journeySchema = new Schema(
   }
 );
 
-journeySchema.virtual('reactionCount').get(function() {
-  return this.reactions.length;
+journeySchema.virtual('goalCount').get(function() {
+  return this.goals.length;
 });
 
-const Journey = model('journey', journeySchema);
+const Journey = model('Journey', journeySchema);
 
 module.exports = Journey
