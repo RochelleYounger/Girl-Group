@@ -1,9 +1,9 @@
-const { User } = require('../models');
+const { User } = require('../../models');
 const { ApolloError } = require('apollo-server-errors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const resolvers = {
+module.exports = {
   Query: {
     hello: () => 'Hello World',
     getAllUsers: async () => {
@@ -72,9 +72,10 @@ const resolvers = {
         return user;
       } else {
         // if user doesn't exist throw error
-        throw new ApolloError('Incorrect password', 'INCORRECT_PASSWORD')
+        throw new ApolloError('Incorrect credentials. Make sure your credentials are properly formatted', 'INCORRECT_PASSWORD')
       } 
     },
+    // need to create error handling for deletion of users that don't exist
     deleteUser: async (_, {id}) => {
       await User.findByIdAndDelete(id);
       return 'user deleted';
@@ -82,7 +83,7 @@ const resolvers = {
     updateUser: async (_, args) => {
       const { id } = args;
       const { username, email, password } = args.user;
-      const user = await User.findByIdAndUpdate(
+      const user = await User.findByIdAndUpdate( 
         id,
         { username, email, password },
         { new: true }
@@ -91,5 +92,3 @@ const resolvers = {
     }
   }
 };
-
-module.exports = resolvers;
