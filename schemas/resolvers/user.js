@@ -6,16 +6,17 @@ const bcrypt = require('bcrypt');
 module.exports = {
   Query: {
     hello: () => 'Hello World',
-    getAllUsers: async () => {
+    getUsers: async () => {
       return await User.find();
     },
-    getUser: async (_, {id}) => {
-      return await User.findById(id);
+    getUser: async (_, {userId}) => {
+      return await User.findById(userId);
     }
   },
   Mutation: {
-    createUser: async (_, args) => {
-      const { username, email, password } = args.user;
+    createUser: async (_, {username, email, password}) => {
+      // **NOTE** following code now irrelevant due to previous object destructuring
+      // const { username, email, password } = args.user;
       // const user = new User({ username, email, password });
       // await user.save();
       // return user;
@@ -80,9 +81,9 @@ module.exports = {
       await User.findByIdAndDelete(id);
       return 'user deleted';
     },
-    updateUser: async (_, args) => {
-      const { id } = args;
-      const { username, email, password } = args.user;
+    updateUser: async (_, { id, username, email, password }) => {
+      // const { id } = args;
+      // const { username, email } = args.user;
       const user = await User.findByIdAndUpdate( 
         id,
         { username, email, password },
