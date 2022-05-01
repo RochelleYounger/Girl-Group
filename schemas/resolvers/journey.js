@@ -1,7 +1,8 @@
 const { Journey } = require('../../models');
-const { ApolloError } = require('apollo-server-errors');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+// not used for now
+// const { ApolloError } = require('apollo-server-errors');
+// const jwt = require('jsonwebtoken');
+// const bcrypt = require('bcrypt');
 
 module.exports = {
   Query: {
@@ -9,7 +10,7 @@ module.exports = {
     getJourneys: async () => {
       return await Journey.find();
     },
-    getJourney: async (_, {id}) => {
+    getJourney: async (_, {journeyId}) => {
       return await Journey.findById(journeyId);
     }
   },

@@ -16,16 +16,26 @@ const typeDefs = gql`
     purpose: String
     # createdAt: String
   }
+
+  type Goal {
+    id: ID
+    # completedby: [users]
+    goalName: String
+  }
   
   type Query {
     hello: String
     helloJ: String
+    helloG: String
 
     getUsers: [User]
     getUser(userId: ID!): User
 
     getJourneys: [Journey]
     getJourney(journeyId: ID!): Journey
+
+    getGoals: [Goal]
+    getGoal(goalId: ID!): Goal
   }
 
   # input userInput {
@@ -51,6 +61,9 @@ const typeDefs = gql`
     createJourney(title: String!, purpose: String!): Journey
     deleteJourney(id: ID!): String
     updateJourney(id: ID!, title: String, purpose: String): Journey
+    createGoal(goalName: String!): Goal
+    deleteGoal(id: ID!): String
+    updateGoal(id: ID!, goalName: String): Goal
   }
 `
 
