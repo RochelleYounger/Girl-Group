@@ -22,11 +22,20 @@ const typeDefs = gql`
     # completedby: [users]
     goalName: String
   }
+  type Media{
+    id: ID
+    # username: String
+    mediaName: String
+    mediaInfo: String
+    mediaRef: String
+    mediaType: String
+  }
   
   type Query {
     hello: String
     helloJ: String
     helloG: String
+    helloM: String
 
     getUsers: [User]
     getUser(userId: ID!): User
@@ -36,6 +45,9 @@ const typeDefs = gql`
 
     getGoals: [Goal]
     getGoal(goalId: ID!): Goal
+
+    getMedia: [Media]
+    getMedium(mediaId: ID!): Media
   }
 
   # input userInput {
@@ -64,6 +76,9 @@ const typeDefs = gql`
     createGoal(goalName: String!): Goal
     deleteGoal(id: ID!): String
     updateGoal(id: ID!, goalName: String): Goal
+    createMedia(mediaName: String!, mediaInfo: String!, mediaRef: String!, mediaType: String!): Media
+    deleteMedia(id: ID!): String
+    updateMedia(id: ID!, mediaName: String, mediaInfo: String, mediaRef: String, mediaType: String): Media
   }
 `
 
