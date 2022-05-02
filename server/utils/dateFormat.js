@@ -1,3 +1,4 @@
+// Code used from module 21
 const addDateSuffix = (date) => {
   let dateStr = date.toString();
 

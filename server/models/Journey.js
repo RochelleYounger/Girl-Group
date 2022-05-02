@@ -1,43 +1,49 @@
 const { Schema, model } = require('mongoose');
-const goalSchema = require('./Goal');
-const dateFormat = require('../utils/dateFormat');
+// const dateFormat = require('../utils/dateFormat')
 
 const journeySchema = new Schema(
   {
-    journeyTitle: {
-      type: String,
-      required: 'You need to leave a journey!',
-      minlength: 1,
-      maxlength: 30
-    },
-    journeyDescription: {
-      type: String,
-      required: 'You need to leave a journey!',
-      minlength: 1,
-      maxlength: 280
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: timestamp => dateFormat(timestamp)
-    },
-    username: {
+    creatorId: {
       type: String,
       required: true
     },
-    goals: [goalSchema]
+    title: {
+      type: String,
+      required: 'Your journey must have a title.',
+      minlength: 1,
+      maxlength: 35
+    },
+    purpose: {
+      type: String,
+      required: 'You need to provide the purpose of your Journey.',
+      minlength: 1,
+      maxlength: 350
+    },
+    goals: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Goal'
+      }
+    ],
+    members: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ],
+    createdAt: {
+      type: String,
+      default: Date.now,
+      //   get: timestamp => dateFormat(timestamp)
+    }
   },
   {
     toJSON: {
       getters: true
     }
   }
-);
-
-journeySchema.virtual('goalCount').get(function() {
-  return this.goals.length;
-});
+)
 
 const Journey = model('Journey', journeySchema);
 
-module.exports = Journey
+module.exports = Journey;

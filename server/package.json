@@ -1,26 +1,25 @@
 {
-  "name": "mern-server",
+  "name": "motiv8_testing",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "watch": "nodemon",
-    "seed": "node seeders/seeds.js"
+    "watch": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server-express": "^3.3.0",
+    "apollo-server": "^3.6.7",
+    "apollo-server-errors": "^3.3.1",
     "bcrypt": "^5.0.1",
-    "express": "^4.17.1",
-    "faker": "^4.1.0",
-    "graphql": "^15.5.0",
+    "graphql": "^16.4.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.13"
+    "mongoose": "^6.3.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.16"
   }
 }
