@@ -4,36 +4,6 @@ const { ApolloServer } = require('apollo-server-express');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
-// const mongoose = require('mongoose');
-
-// const startServer = async () => {
-//   const app = express ();
-//   const apolloServer = new ApolloServer({typeDefs, resolvers });
-
-//   await apolloServer.start();
-
-//   apolloServer.applyMiddleware({ app });
-
-//   app.use((req, res) => {
-//     res.send('Hello from express apollo server');
-//   })
-
-//   await db;
-
-//   console.log('Mongoose connected...')
-
-//   app.listen(3001, () => console.log('App listening on port 3001!'));
-// }
-
-// startServer();
-
-// // db.once('open', () => {
-// //   app.listen(PORT, () => {
-// //     console.log(`API server running on port ${PORT}!`);
-// //   });
-// // });
-
-// console.log ('2_______________________________________________');
 
 
 const PORT = process.env.PORT || 3001;

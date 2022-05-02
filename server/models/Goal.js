@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-// const dateFormat = require('../utils/dateFormat')
 
 const goalSchema = new Schema({
     journeyId: {
@@ -18,11 +17,6 @@ const goalSchema = new Schema({
         ref: 'User'
       }
     ]
-    // createdAt: {
-    //   type: String,
-    //   default: Date.now,
-    //   get: timestamp => dateFormat(timestamp)
-    // }
 })
 
 const Goal = model('Goal', goalSchema);

@@ -71,11 +71,11 @@ const typeDefs = gql`
     getJourney(journeyId: ID!): Journey
 
     ########### the queries below are kinda unecessary
-    getGoals: [Goal]
-    getGoal(goalId: ID!): Goal
+    # getGoals: [Goal]
+    # getGoal(goalId: ID!): Goal
 
-    getMedia: [Media]
-    getMedium(mediaId: ID!): Media
+    # getMedia: [Media]
+    # getMedium(mediaId: ID!): Media
   }
 
   type Mutation {
@@ -84,17 +84,17 @@ const typeDefs = gql`
     deleteUser(id: ID!): String
     updateUser(id: ID!, username: String, email: String, password: String, bio: String): User
 
-    createJourney(title: String!, purpose: String!): Journey
+    # createJourney(title: String!, purpose: String!): Journey
     deleteJourney(id: ID!): String
     updateJourney(id: ID!, title: String, purpose: String): Journey
 
-    createGoal(goalName: String!): Goal
+    # createGoal(goalName: String!): Goal
     deleteGoal(id: ID!): String
-    updateGoal(id: ID!, goalName: String): Goal
+    # updateGoal(id: ID!, goalName: String): Goal
 
-    createMedia(mediaName: String!, mediaInfo: String!, mediaRef: String!, mediaType: String!): Media
+    # createMedia(mediaName: String!, mediaInfo: String!, mediaRef: String!, mediaType: String!): Media
     deleteMedia(id: ID!): String
-    updateMedia(id: ID!, mediaName: String, mediaInfo: String, mediaRef: String, mediaType: String): Media
+    # updateMedia(id: ID!, mediaName: String, mediaInfo: String, mediaRef: String, mediaType: String): Media
     
 
     ########### more specific queries
@@ -108,7 +108,7 @@ const typeDefs = gql`
     # add goal to journey
     addGoal(goalName: String!, journeyId: ID!): Journey
     # remove goal from journey
-    removeGoal(goalId: ID!): Goal
+    # removeGoal(goalId: ID!): Goal
 
     #### user resolvers
     # add media

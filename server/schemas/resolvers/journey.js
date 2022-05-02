@@ -1,9 +1,5 @@
 const { Journey, Goal } = require('../../models');
 const { AuthenticationError } = require('apollo-server-express');
-// not used for now
-// const { ApolloError } = require('apollo-server-errors');
-// const jwt = require('jsonwebtoken');
-// const bcrypt = require('bcrypt');
 
 module.exports = {
   Query: {
@@ -20,34 +16,21 @@ module.exports = {
     }
   },
   Mutation: {
-    // createJourney: async (_, {title, purpose}) => {
+    // createJourney: async (parent, args, context) => {
+    //   if (context.user) {
+    //     const journey = await Journey.create({ ...args, creatorId: context.user._id });
 
-    //   // build mongoose journey model
-    //   const journey = new Journey ({
-    //     title: title,
-    //     purpose: purpose
-    //   })
+    //     await User.findByIdAndUpdate(
+    //       { _id: context.user._id },
+    //       { $push: { journeys: journey._id } },
+    //       { new: true }
+    //     ).populate('journeys');
 
+    //     return journey;
+    //   }
 
-    //   // save journey to db
-    //   await journey.save();
-    //   return journey;
+    //   throw new AuthenticationError('You need to be logged in!');
     // },
-    createJourney: async (parent, args, context) => {
-      if (context.user) {
-        const journey = await Journey.create({ ...args, creatorId: context.user._id });
-
-        await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { journeys: journey._id } },
-          { new: true }
-        ).populate('journeys');
-
-        return journey;
-      }
-
-      throw new AuthenticationError('You need to be logged in!');
-    },
     // need to create error handling for deletion of users that don't exist
     deleteJourney: async (_, { id }) => {
       await Journey.findByIdAndDelete(id);

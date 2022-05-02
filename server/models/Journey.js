@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-// const dateFormat = require('../utils/dateFormat')
 
 const journeySchema = new Schema(
   {
@@ -34,7 +33,6 @@ const journeySchema = new Schema(
     createdAt: {
       type: String,
       default: Date.now,
-      //   get: timestamp => dateFormat(timestamp)
     }
   },
   {
