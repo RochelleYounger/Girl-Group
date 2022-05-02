@@ -41,21 +41,6 @@ const typeDefs = gql`
     mediaRef: String
     mediaType: String
   }
-
-  # input userInput {
-  #   username: String
-  #   email: String
-  #   password: String
-  # }
-
-  # input loginInput {
-  #   email: String
-  #   password: String
-  # }
-
-  # input journeyInput {
-  # 
-  # }
   
   type Query {
     hello: String
