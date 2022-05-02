@@ -1,13 +1,12 @@
 const { Schema, model } = require('mongoose');
 // const dateFormat = require('../utils/dateFormat')
 
-const journeySchema = new Schema({
-    // username: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    //   trim: true
-    // },
+const journeySchema = new Schema(
+  {
+    creatorId: {
+      type: String,
+      required: true
+    },
     title: {
       type: String,
       required: 'Your journey must have a title.',
@@ -20,12 +19,30 @@ const journeySchema = new Schema({
       minlength: 1,
       maxlength: 350
     },
-    // createdAt: {
-    //   type: String,
-    //   default: Date.now,
-    //   get: timestamp => dateFormat(timestamp)
-    // }
-})
+    goals: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Goal'
+      }
+    ],
+    members: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ],
+    createdAt: {
+      type: String,
+      default: Date.now,
+      //   get: timestamp => dateFormat(timestamp)
+    }
+  },
+  {
+    toJSON: {
+      getters: true
+    }
+  }
+)
 
 const Journey = model('Journey', journeySchema);
 

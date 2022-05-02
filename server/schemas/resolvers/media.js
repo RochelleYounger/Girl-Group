@@ -4,10 +4,10 @@ module.exports = {
   Query: {
     helloM: () => 'Hello World from media',
     getMedia: async () => {
-      return await Media.find();
+      return await Media.find()
     },
     getMedium: async (_, {mediaId}) => {
-      return await Media.findById(mediaId);
+      return await Media.findById(mediaId)
     }
   },
   Mutation: {

@@ -2,22 +2,22 @@ const { Schema, model } = require('mongoose');
 // const dateFormat = require('../utils/dateFormat')
 
 const goalSchema = new Schema({
-    // journey: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User'
-    // },
+    journeyId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Journey'
+    },
     goalName: {
       type: String,
       required: 'Your journey must have a title.',
       minlength: 1,
       maxlength: 70
     },
-    // conpletedby: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User'
-    //   }
-    // ]
+    conpletedby: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ]
     // createdAt: {
     //   type: String,
     //   default: Date.now,

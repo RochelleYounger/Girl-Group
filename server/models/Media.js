@@ -1,13 +1,12 @@
 const { Schema, model } = require('mongoose');
 // const dateFormat = require('../utils/dateFormat')
 
-const mediaSchema = new Schema({
-    // username: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    //   trim: true
-    // },
+const mediaSchema = new Schema(
+  {
+    userId: {
+      type: String,
+      required: true
+    },
     mediaName: {
       type: String,
       required: 'Your media must have a title.',
@@ -27,13 +26,14 @@ const mediaSchema = new Schema({
       type: String,
       required: 'You need to provide the purpose of your media.',
       minlength: 1,
-    },
-    // createdAt: {
-    //   type: String,
-    //   default: Date.now,
-    //   get: timestamp => dateFormat(timestamp)
-    // }
-})
+    }
+  },
+  {
+    toJSON: {
+      getters: true
+    }
+  }
+)
 
 const Media = model('Media', mediaSchema);
 
