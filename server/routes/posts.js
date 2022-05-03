@@ -1,7 +1,7 @@
 import express from 'express';
 // import { Users } from '../../react-social/src/dummyData.js';
 import Post from '../models/Post.js'
-import User from '../models/user2';
+import User from '../models/user.js';
 const router = express.Router();
 
 //create a post
