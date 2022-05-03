@@ -1,61 +1,64 @@
-const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
+import mongoose from "mongoose";
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     username: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true
+        type: String,
+        required: true,
+        min: 3,
+        max: 20, 
+        unique: true
     },
     email: {
-      type: String,
-      required: true,
-      unique: true,
-      match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Must match an email address!']
+        type: String,
+        required: true,
+        max: 50,
+        unique: true
     },
     password: {
-      type: String,
-      required: true,
-      minlength: 5,
+        type:String,
+        required: true,
+        min:6,
     },
-    token: {
-      type: String,
+    profilePicture:{
+        type:String,
+        default:""
     },
-    bio: {
-      type: String,
-      minlength: 1,
-      maxlength: 350,
+    coverPicture:{
+        type:String,
+        default:""
     },
-    journeys: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Journey'
-      }
-    ],
-    media: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Media'
-      }
-    ]
-});
+    followers:{
+        type:Array,
+        default:[]
+    },
+    following:{
+        type:Array,
+        default:[]
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false
+    },
+    desc:{
+        type: String,
+        max:50
+    },
+    city:{
+        type: String,
+        max: 50
+    },
+    from:{
+        type: String,
+        max:50
+    },
+    relationship:{
+        type:Number,
+        enum:[1, 2, 3]
+    }
+},
+{timestamps: true}
+);
 
-// set up pre-save middleware to create password
-userSchema.pre('save', async function(next) {
-  if (this.isNew || this.isModified('password')) {
-    const saltRounds = 10;
-    this.password = await bcrypt.hash(this.password, saltRounds);
-  }
+const user = mongoose.model("user", userSchema)
 
-  next();
-});
-
-// compare the incoming password with the hashed password
-userSchema.methods.isCorrectPassword = async function(password) {
-  return bcrypt.compare(password, this.password);
-};
-
-const User = model('User', userSchema);
-
-module.exports = User;
+export default user;
