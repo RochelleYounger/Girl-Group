@@ -21,6 +21,8 @@ export const loginUser = createAsyncThunk(
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (userData) => {
+
+    console.log('userData',userData)
     const { data } = await axios.post("/auth/register", userData);
     return data;
   }
