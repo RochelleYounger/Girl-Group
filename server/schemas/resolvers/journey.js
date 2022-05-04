@@ -61,36 +61,36 @@ module.exports = {
       );
       return journey
     },
-    addMember: async (parent, { memberUsername, journeyId }, context) => {
-      if (context.user) {
-        // const medium = await Media.create({ ...args, userId: context.user._id });
+    // addMember: async (parent, { memberUsername, journeyId }, context) => {
+    //   if (context.user) {
+    //     // const medium = await Media.create({ ...args, userId: context.user._id });
 
-        const updatedJourney = await Journey.findByIdAndUpdate(
-          { _id: journeyId },
-          { $push: { members: memberUsername } },
-          { new: true, runValidators: true }
-        ).populate('members');
+    //     const updatedJourney = await Journey.findByIdAndUpdate(
+    //       { _id: journeyId },
+    //       { $push: { members: memberUsername } },
+    //       { new: true, runValidators: true }
+    //     ).populate('members');
 
-        return updatedJourney;
-      }
+    //     return updatedJourney;
+    //   }
 
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    dropMember: async (parent, { memberId, journeyId }, context) => {
-      if (context.user) {
-        // const medium = await Media.create({ ...args, userId: context.user._id });
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
+    // dropMember: async (parent, { memberId, journeyId }, context) => {
+    //   if (context.user) {
+    //     // const medium = await Media.create({ ...args, userId: context.user._id });
 
-        const updatedJourney = await Journey.findByIdAndUpdate(
-          { _id: journeyId },
-          { $pull: { members: {memberId} } },
-          { new: true, runValidators: true }
-        ).populate('members');
+    //     const updatedJourney = await Journey.findByIdAndUpdate(
+    //       { _id: journeyId },
+    //       { $pull: { members: {memberId} } },
+    //       { new: true, runValidators: true }
+    //     ).populate('members');
 
-        return updatedJourney;
-      }
+    //     return updatedJourney;
+    //   }
 
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
     addGoal: async (parent, args, context) => {
       if (context.user) {
         // const medium = await Media.create({ ...args, userId: context.user._id });

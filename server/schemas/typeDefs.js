@@ -91,10 +91,10 @@ const typeDefs = gql`
     updateJourney(id: ID!, title: String, purpose: String): Journey
     # add goal to journey
     addGoal(goalName: String!, journeyId: ID!): Journey
-    # add member to journey
-    addMember(memberUsername: String!, journeyId: ID!): Journey
-    # remove member from journey
-    dropMember(memberId: ID!, journeyId: ID!): User
+    # # add member to journey
+    # addMember(memberUsername: String!, journeyId: ID!): Journey
+    # # remove member from journey
+    # dropMember(memberId: ID!, journeyId: ID!): User
 
     # createGoal(goalName: String!): Goal
     deleteGoal(id: ID!): String
