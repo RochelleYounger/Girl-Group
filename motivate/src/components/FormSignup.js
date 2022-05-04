@@ -1,6 +1,8 @@
 import React from "react";
+import useForm from "./useForm";
 
 const FormSignup = () => {
+  const { handleChange, values } = useForm();
   return (
     <div className="form-content-right">
       <form className="form">
@@ -53,7 +55,7 @@ const FormSignup = () => {
           </label>
           <input
             id="password2"
-            type="password2"
+            type="password"
             name="password2"
             className="form-input"
             placeholder="Confirm password"

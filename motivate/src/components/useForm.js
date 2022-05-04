@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 
 const useForm = () => {
-  const [vaalues, setValues] = useState({
+  const [values, setValues] = useState({
     username: "",
     email: "",
     password: "",
     password2: "",
   });
-  cont[(errors, setErrors)] = useState({});
+
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,7 +19,7 @@ const useForm = () => {
     });
   };
 
-  return { handleChange };
+  return { handleChange, values };
 };
 
 export default useForm;
