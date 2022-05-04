@@ -1,12 +1,13 @@
 import React from "react";
-import "./App.css";
 import Form from "./components/Form";
+import "./App.css";
 
 const App = () => {
-  return;
-  <div>
-    <Form />
-  </div>;
+  return (
+    <div>
+      <Form />
+    </div>
+  );
 };
 
 export default App;
