@@ -7,8 +7,8 @@ module.exports = {
     Query: {
         ...userResolvers.Query,
         ...journeyResolvers.Query,
-        ...goalResolvers.Query,
-        ...mediaResolvers.Query
+        // ...goalResolvers.Query,
+        // ...mediaResolvers.Query
     },
     Mutation: {
         ...userResolvers.Mutation,

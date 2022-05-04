@@ -1,4 +1,4 @@
-const { Journey, Goal } = require('../../models');
+const { Journey, Goal, User } = require('../../models');
 const { AuthenticationError } = require('apollo-server-express');
 // not used for now
 // const { ApolloError } = require('apollo-server-errors');
@@ -61,14 +61,14 @@ module.exports = {
       );
       return journey
     },
-    addMember: async (parent, { memberId, journeyId }, context) => {
+    addMember: async (parent, { memberUsername, journeyId }, context) => {
       if (context.user) {
         // const medium = await Media.create({ ...args, userId: context.user._id });
 
         const updatedJourney = await Journey.findByIdAndUpdate(
           { _id: journeyId },
-          { $addToSet: { members: memberId } },
-          { new: true }
+          { $push: { members: memberUsername } },
+          { new: true, runValidators: true }
         ).populate('members');
 
         return updatedJourney;
@@ -76,21 +76,21 @@ module.exports = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    // dropMember: async (parent, args, context) => {
-    //   if (context.user) {
-    //     const medium = await Media.create({ ...args, userId: context.user._id });
+    dropMember: async (parent, { memberId, journeyId }, context) => {
+      if (context.user) {
+        // const medium = await Media.create({ ...args, userId: context.user._id });
 
-    //     await User.findByIdAndUpdate(
-    //       { _id: context.user._id },
-    //       { $push: { media: medium._id } },
-    //       { new: true }
-    //     ).populate('members');
+        const updatedJourney = await Journey.findByIdAndUpdate(
+          { _id: journeyId },
+          { $pull: { members: {memberId} } },
+          { new: true, runValidators: true }
+        ).populate('members');
 
-    //     return medium;
-    //   }
+        return updatedJourney;
+      }
 
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
+      throw new AuthenticationError('You need to be logged in!');
+    },
     addGoal: async (parent, args, context) => {
       if (context.user) {
         // const medium = await Media.create({ ...args, userId: context.user._id });

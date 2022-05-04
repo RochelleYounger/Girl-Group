@@ -23,7 +23,7 @@ const typeDefs = gql`
     title: String
     purpose: String
     goals: [Goal]
-    members: [User]
+    members: [String]
     createdAt: String
   }
 
@@ -70,12 +70,12 @@ const typeDefs = gql`
     getJourneys: [Journey]
     getJourney(journeyId: ID!): Journey
 
-    ########### the queries below are kinda unecessary
-    getGoals: [Goal]
-    getGoal(goalId: ID!): Goal
+    # ########### the queries below are kinda unecessary
+    # getGoals: [Goal]
+    # getGoal(goalId: ID!): Goal
 
-    getMedia: [Media]
-    getMedium(mediaId: ID!): Media
+    # getMedia: [Media]
+    # getMedium(mediaId: ID!): Media
   }
 
   type Mutation {
@@ -83,36 +83,36 @@ const typeDefs = gql`
     loginUser(email: String!, password: String!): Permission
     deleteUser(id: ID!): String
     updateUser(id: ID!, username: String, email: String, password: String, bio: String): User
+    # add media
+    addMedia(mediaName: String!, mediaInfo: String!, mediaRef: String!, mediaType: String!): Media
 
     createJourney(title: String!, purpose: String!): Journey
     deleteJourney(id: ID!): String
     updateJourney(id: ID!, title: String, purpose: String): Journey
+    # add goal to journey
+    addGoal(goalName: String!, journeyId: ID!): Journey
+    # add member to journey
+    addMember(memberUsername: String!, journeyId: ID!): Journey
+    # remove member from journey
+    dropMember(memberId: ID!, journeyId: ID!): User
 
-    createGoal(goalName: String!): Goal
+    # createGoal(goalName: String!): Goal
     deleteGoal(id: ID!): String
-    updateGoal(id: ID!, goalName: String): Goal
+    # updateGoal(id: ID!, goalName: String): Goal
 
-    createMedia(mediaName: String!, mediaInfo: String!, mediaRef: String!, mediaType: String!): Media
+    # createMedia(mediaName: String!, mediaInfo: String!, mediaRef: String!, mediaType: String!): Media
     deleteMedia(id: ID!): String
-    updateMedia(id: ID!, mediaName: String, mediaInfo: String, mediaRef: String, mediaType: String): Media
+    # updateMedia(id: ID!, mediaName: String, mediaInfo: String, mediaRef: String, mediaType: String): Media
     
 
     ########### more specific queries
     #### journey resolvers
-    # add member to journey
-    addMember(memberId: ID!, journeyId: ID!): Journey
     # addMember: Journey
-    # remove member from journey
-    dropMember(memberId: ID!): User
     
-    # add goal to journey
-    addGoal(goalName: String!, journeyId: ID!): Journey
-    # remove goal from journey
-    removeGoal(goalId: ID!): Goal
+    # # remove goal from journey
+    # removeGoal(goalId: ID!): Goal
 
     #### user resolvers
-    # add media
-    addMedia(mediaName: String!, mediaInfo: String!, mediaRef: String!, mediaType: String!): Media
     # # remove media
     # removeMedia(media: ID!): Media
     # add journey
