@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# Motiv8 Application 
+=======
 [![license: ISC](https://img.shields.io/badge/License-ISC-lightblue)](https://opensource.org/licenses/ISC)
 
 # Motiv8
@@ -61,3 +64,4 @@ This application is licensed under [ISC](https://opensource.org/licenses/ISC).
 
 ---
 © 2022 Motiv8
+>>>>>>> d9afda759054457681849670def75300d25e06a1
